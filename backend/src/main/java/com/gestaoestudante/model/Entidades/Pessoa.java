@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gestaoestudante.model.domain;
+package com.gestaoestudante.model.Entidades;
 
 import java.time.LocalDate;
+
+import com.gestaoestudante.model.Entidades.enums.Sexo;
 
 /**
  *
@@ -12,38 +14,33 @@ import java.time.LocalDate;
  */
 public abstract class Pessoa {
 
-    private int idPessoa;
+    private long idPessoa;
     private String codigo;
     private String nome;
-    private String sexo;
-    private LocalDate dataNascimento;
+    private Sexo sexo;
+    LocalDate dataNascimento;
     private String email;
     private String telefone;
 
-    public Pessoa(int idPessoa, String codigo, String nome, String sexo, LocalDate dataNascimento, String email, String telefone) {
+    public Pessoa(long idPessoa, String codigo, String nome, Sexo sexo, LocalDate dataNascimento, String email, String telefone) {
         this.idPessoa = idPessoa;
         this.codigo = codigo;
         this.nome = nome;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
+        if (!email.contains("@")) {
+            throw new IllegalArgumentException("O email não é váldido");
+        }
         this.email = email;
         this.telefone = telefone;
     }
 
-    public int getIdPessoa() {
+    public long getIdPessoa() {
         return idPessoa;
-    }
-
-    public void setIdPessoa(int idPessoa) {
-        this.idPessoa = idPessoa;
     }
 
     public String getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -51,30 +48,34 @@ public abstract class Pessoa {
     }
 
     public void setNome(String nome) {
+        if (nome.isBlank()) {
+            throw new IllegalArgumentException("O nome é inválido");
+        }
         this.nome = nome;
     }
 
     public String getSexo() {
-        return sexo;
+        return sexo.sexoCapitalCase();
     }
 
     public void setSexo(String sexo) {
-        this.sexo = sexo;
+        this.sexo = Sexo.valueOf(sexo.toUpperCase());
     }
 
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
+    public abstract void setDataNascimento(LocalDate dataNascimento);
 
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
+        if (!email.contains("@")) {
+            throw new IllegalArgumentException("O email não é váldido");
+        }
         this.email = email;
     }
 

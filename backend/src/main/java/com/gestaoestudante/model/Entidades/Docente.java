@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gestaoestudante.model.domain;
+package com.gestaoestudante.model.Entidades;
 
 import java.time.LocalDate;
+
+import com.gestaoestudante.model.Entidades.enums.Sexo;
 
 /**
  *
@@ -15,7 +17,7 @@ public class Docente extends Pessoa {
     private String grau;
     private String areaEspecializacao;
 
-    Docente(int idPessoa, String codigo, String nome, String sexo,
+    Docente(int idPessoa, String codigo, String nome, Sexo sexo,
             LocalDate dataNascimento, String email, String telefone, String grau, String areaEspecializacao) {
         super(idPessoa, codigo, nome, sexo, dataNascimento, email, telefone);
         this.grau = grau;
@@ -40,9 +42,11 @@ public class Docente extends Pessoa {
     }
 
     @Override
-    public void setCodigo(String codigo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setCodigo'");
-    }
+    public void setDataNascimento(LocalDate dataNascimento) {
+        LocalDate limite = LocalDate.of(2007, 1, 1);
+        if(!dataNascimento.isAfter(limite)) throw new IllegalArgumentException("Data de Nascimento inválida");
+        this.dataNascimento=dataNascimento;
+        
+         }
 
 }
