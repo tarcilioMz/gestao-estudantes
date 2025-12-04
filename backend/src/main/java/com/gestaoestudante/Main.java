@@ -1,18 +1,21 @@
 package com.gestaoestudante;
 
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
-import com.gestaoestudante.model.Entidades.Estudante;
-import com.gestaoestudante.model.Entidades.enums.Cursos;
-import com.gestaoestudante.services.EstudanteServices;
+import com.gestaoestudante.controller.EstudanteConsoleController;
+import com.gestaoestudante.validator.PessoasValidator;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Hello worldii!");
-        EstudanteServices ets =new  EstudanteServices();
-        Estudante e = ets.registarEstudante();
-        System.out.println(ets.mostrarEstudantes(e));
-        
+        Scanner sc = new Scanner(System.in);
+        StringTokenizer stkn = new StringTokenizer("");
+        PessoasValidator psv = new PessoasValidator();
+        EstudanteConsoleController estConsole = new EstudanteConsoleController(sc, stkn);
+        String nome = estConsole.lerNome(sc);
+        System.out.println(nome);
+
     }
 }
