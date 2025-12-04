@@ -14,8 +14,6 @@ import java.util.Scanner;
  * @author Muzime
  */
 public class PessoasValidator {
-
-    private final int ANO_NASCIMENTO_MIN = LocalDate.now().getYear() - 18;
     
     public boolean isNomeValido(String nome) {
         if (nome == null || nome.isBlank() || (nome.length() < 3) || nome.length() > 46) {
@@ -25,10 +23,11 @@ public class PessoasValidator {
     }
 
     public boolean isDataNascimentoValida(LocalDate dataNascimento) {
-      if((dataNascimento.isAfter(LocalDate.now())||dataNascimento.getYear()>ANO_NASCIMENTO_MIN)){
+      if(dataNascimento == null){
           return false;
       }
-        return true;
+      LocalDate hoje =LocalDate.now();
+        return !(dataNascimento.isAfter(hoje.minusYears(18)));
     }
 
 }
