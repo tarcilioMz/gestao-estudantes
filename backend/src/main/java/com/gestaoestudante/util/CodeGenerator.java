@@ -9,5 +9,5 @@ package com.gestaoestudante.util;
  * @author Muzime
  */
 public interface CodeGenerator {
-    public String gerarCodigo();
+    public String gerarCodigoParticular();
 }

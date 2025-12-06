@@ -8,14 +8,14 @@ package com.gestaoestudante.model.Entidades.enums;
  *
  * @author Muzime
  */
-public enum Cursos {
+public enum CursoEnum {
     LIC_ENGENHARIA_INFORMATICA(1), LIC_ENGENHARIA_QUIMICA(2), LIC_ENGENHARIA_ELECTRICA(3), LIC_ENGENHARIA_ELECTRONICA(4);
 
     private final int indice;
 
     
 
-    Cursos(int indice) {
+    CursoEnum(int indice) {
         this.indice = indice;
     }
 
@@ -23,8 +23,8 @@ public enum Cursos {
         return indice;
     }
 
-    public Cursos searchByIndice(int indice) {
-        for (Cursos c : Cursos.values()) {
+    public CursoEnum searchByIndice(int indice) {
+        for (CursoEnum c : CursoEnum.values()) {
             if (c.getIndice() == indice) {
                 return c;
             }
@@ -50,13 +50,13 @@ public enum Cursos {
 
     public static void todosCursos() {
         int i = 1;
-        for (Cursos c : Cursos.values()) {
+        for (CursoEnum c : CursoEnum.values()) {
             System.out.println(i + ". " + cursoLeg(c));
             i++;
         }
     }
 
-    public static String cursoLeg(Cursos curso) {
+    public static String cursoLeg(CursoEnum curso) {
         return switch (curso) {
             case LIC_ENGENHARIA_INFORMATICA ->
                 "Licenciatura em Engenharia Informatica";

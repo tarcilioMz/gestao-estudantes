@@ -8,7 +8,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import com.gestaoestudante.validator.PessoasValidator;
+import com.gestaoestudante.validator.PessoaValidator;
 
 /**
  *
@@ -16,29 +16,26 @@ import com.gestaoestudante.validator.PessoasValidator;
  */
 public class EstudanteConsoleController {
 
-    // private final Scanner sc;
-    private final PessoasValidator pessoasValidator;
+    private final Scanner sc;
+    private final PessoaValidator pessoaValidator;
 
-    public EstudanteConsoleController() {
-
-        this.pessoasValidator = new PessoasValidator();
+    public EstudanteConsoleController(Scanner sc, PessoaValidator pessoaValidator) {
+        this.sc = sc;
+        this.pessoaValidator = pessoaValidator;
 
     }
 
-    public String lerNome(Scanner sc) {
+    public String lerNome() {
         String nome = null;
         do {
             System.out.println("Nome completo: ");
             nome = sc.nextLine();
 
-            if (!new PessoasValidator().isNomeValido(nome)) {
-                System.out.println("Nome inválido!/nTente novamente");
-            }
-        } while (!new PessoasValidator().isNomeValido(nome));
+        } while (pessoaValidator.isNomeValido(nome));
         return nome;
     }
 
-    public LocalDate lerDataNascimento(Scanner sc) {
+    public LocalDate lerDataNascimento() {
         int dd, mm, year = 0;
         String dataCompleta = null;
         LocalDate dataUsuario = null;
@@ -51,9 +48,7 @@ public class EstudanteConsoleController {
                 mm = Integer.parseInt(dataInseridaArray[1]);
                 year = Integer.parseInt(dataInseridaArray[2]);
                 dataUsuario = LocalDate.of(year, mm, dd);
-                if (!new PessoasValidator().isDataNascimentoValida(dataUsuario)) {
-                    throw new IllegalArgumentException();
-                }
+                
             } catch (DateTimeException | NullPointerException | ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
                 System.out.println("Data Inválida!");
                 dataUsuario = null;

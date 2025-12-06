@@ -1,6 +1,6 @@
 package com.gestaoestudante.model.Entidades.enums;
 
-public enum Sexo {
+public enum SexoEnum {
     MASCULINO,
     FEMININO,
     OUTRO;
