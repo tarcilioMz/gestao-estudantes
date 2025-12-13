@@ -2,6 +2,7 @@ package com.gestaoestudante.service;
 
 import com.gestaoestudante.util.IdGenerator;
 import com.gestaoestudante.validator.PessoaValidator;
+import java.time.DateTimeException;
 
 import java.time.LocalDate;
 
@@ -17,31 +18,39 @@ public class PessoaService implements IdGenerator {
 
     public void validarNome(String nome) {
         if (!pessoaValidator.isNomeValido(nome)) {
-            throw new IllegalArgumentException("Nome inválido");
+            throw new IllegalArgumentException("Nome invalido");
         }
     }
 
     public void validarDataNascimento(LocalDate dataNascimento) {
         if (!pessoaValidator.isDataNascimentoValida(dataNascimento)) {
-            throw new IllegalArgumentException("Data de nascimento inválida!");
+            throw new IllegalArgumentException("Menor de idade!");
         }
     }
     
     public void validarEmail(String email){
         if(!pessoaValidator.isEmailValido(email)){
-            throw new IllegalArgumentException("Email inválido!");
+            throw new IllegalArgumentException("Email invalido!");
         }
     }
     
     public void validarTelefone(String telefone){
         if(!pessoaValidator.isTelefoneValido(telefone)){
-            throw new IllegalArgumentException("Telefone inválido");
+            throw new IllegalArgumentException("Telefone invalido");
         }
     }
     public void validarSexo(String sexo){
         if(!pessoaValidator.isSexoValido(sexo)){
-            throw new IllegalArgumentException("Sexo inválido");
+            throw new IllegalArgumentException("Sexo invalido");
         }
+    }
+    
+    public LocalDate parseDataNascimento(String dataUser) {
+        String[] partes = dataUser.split("-");
+               LocalDate dataNascimento = LocalDate.of(Integer.parseInt(partes[0]),
+                        Integer.parseInt(partes[1]), Integer.parseInt(partes[2]));
+        return dataNascimento;
+                
     }
 
     @Override

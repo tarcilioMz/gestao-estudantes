@@ -6,7 +6,6 @@ package com.gestaoestudante.model.Entidades;
 
 import com.gestaoestudante.model.Entidades.enums.CursoEnum;
 import java.time.LocalDate;
-
 import com.gestaoestudante.model.Entidades.enums.SexoEnum;
 
 /**
@@ -37,6 +36,10 @@ public class Estudante extends Pessoa {
         return curso.nameTwo();
     }
 
+    public void setCurso(CursoEnum curso) {
+        this.curso = curso;
+    }
+
     public int getAnoIngresso() {
         return anoIngresso;
     }
@@ -49,12 +52,6 @@ public class Estudante extends Pessoa {
         this.statusMatricula = statusMatricula;
     }
 
-    @Override
-    public void setDataNascimento(LocalDate dataNascimento) {
-        LocalDate limite = LocalDate.of(2009, 1, 1);
-        if (!dataNascimento.isAfter(limite)) {
-            throw new IllegalArgumentException("Idade inválida");
-        }
-    }
+    
 
 }

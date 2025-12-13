@@ -32,43 +32,30 @@ public enum CursoEnum {
         throw new IllegalArgumentException("Indice invalido");
     }
     
+//    public String nameTwo(){
+//        return switch(this.name()) {
+//            case "LIC_ENGENHARIA_INFORMATICA" ->
+//                "Licenciatura em Engenharia Informatica";
+//            case "LIC_ENGENHARIA_QUIMICA" ->
+//                "Licenciatura em Engenharia Quimica";
+//            case "LIC_ENGENHARIA_ELECTRICA" ->
+//                "Licenciatura em Engenharia Electrica";
+//            case "LIC_ENGENHARIA_ELECTRONICA" ->
+//                "Licenciatura em Engenharia Eletronica";
+//            default ->
+//                throw new IllegalArgumentException("Curso inválido!");
+//        };
+//
+//    }
+    
+    // VERSAO MAIS REUTILIZAVEL POREM NECESSITA DE FORMATACAO EXTRA
     public String nameTwo(){
-        return switch(this.name()) {
-            case "LIC_ENGENHARIA_INFORMATICA" ->
-                "Licenciatura em Engenharia Informatica";
-            case "LIC_ENGENHARIA_QUIMICA" ->
-                "Licenciatura em Engenharia Quimica";
-            case "LIC_ENGENHARIA_ELECTRICA" ->
-                "Licenciatura em Engenharia Electrica";
-            case "LIC_ENGENHARIA_ELECTRONICA" ->
-                "Licenciatura em Engenharia Eletronica";
-            default ->
-                throw new IllegalArgumentException("Curso inválido!");
-        };
-        
-    }
-
-    public static void todosCursos() {
-        int i = 1;
-        for (CursoEnum c : CursoEnum.values()) {
-            System.out.println(i + ". " + cursoLeg(c));
-            i++;
+        String []partes = name().split("_");
+        StringBuilder sb = new StringBuilder();
+        for(String str: partes){
+            sb.append(str).append(" ");
         }
-    }
-
-    public static String cursoLeg(CursoEnum curso) {
-        return switch (curso) {
-            case LIC_ENGENHARIA_INFORMATICA ->
-                "Licenciatura em Engenharia Informatica";
-            case LIC_ENGENHARIA_QUIMICA ->
-                "Licenciatura em Engenharia Quimica";
-            case LIC_ENGENHARIA_ELECTRICA ->
-                "Licenciatura em Engenharia Electrica";
-            case LIC_ENGENHARIA_ELECTRONICA ->
-                "Licenciatura em Engenharia Eletronica";
-            default ->
-                throw new IllegalArgumentException("Curso inválido!");
-        };
-
+        return sb.toString().trim();
+        
     }
 }

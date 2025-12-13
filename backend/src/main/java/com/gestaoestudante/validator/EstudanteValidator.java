@@ -4,6 +4,7 @@
  */
 package com.gestaoestudante.validator;
 
+import com.gestaoestudante.model.Entidades.enums.CursoEnum;
 import com.gestaoestudante.model.Entidades.enums.StatusEnum;
 import java.time.LocalDate;
 
@@ -31,5 +32,24 @@ public class EstudanteValidator {
             return false;
         }
         return anoIngresso <= anoActual;
+    }
+
+    public boolean isCodigoEstudanteValido(String codigoEstudante) {
+        if (codigoEstudante == null) {
+            return false;
+        }
+        return codigoEstudante.contains("EST") && (codigoEstudante.length() < 9);
+    }
+
+    public boolean isCursoValido(CursoEnum curso) {
+        if (curso == null) {
+            return false;
+        }
+        for (CursoEnum c : CursoEnum.values()) {
+            if (c == curso) {
+                return true;
+            }
+        }
+        return false;
     }
 }

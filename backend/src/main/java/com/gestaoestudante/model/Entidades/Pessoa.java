@@ -60,7 +60,9 @@ public abstract class Pessoa {
         return dataNascimento;
     }
 
-    public abstract void setDataNascimento(LocalDate dataNascimento);
+    public void setDataNascimento(LocalDate dataNascimento){
+        this.dataNascimento=dataNascimento;
+    }
 
     public String getEmail() {
         return email;
