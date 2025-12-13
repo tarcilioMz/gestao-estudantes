@@ -17,7 +17,8 @@ public class Disciplina {
     private String nivel;
     private int creditos;
 
-    public Disciplina(String codDisciplina, String nomeDisciplina, String semestre, String nivel, int creditos) {
+    public Disciplina(int idDisciplina, String codDisciplina, String nomeDisciplina, String semestre, String nivel, int creditos) {
+        this.idDisciplina = idDisciplina;
         this.codDisciplina = codDisciplina;
         this.nomeDisciplina = nomeDisciplina;
         this.semestre = semestre;
@@ -25,12 +26,41 @@ public class Disciplina {
         this.creditos = creditos;
     }
 
+    public int getIdDisciplina() {
+        return idDisciplina;
+    }
+    
+
     public String getCodDisciplina() {
         return codDisciplina;
     }
 
-    public String getnomeDisciplina() {
+    public String getNomeDisciplina() {
         return nomeDisciplina;
+    }
+
+    public void setIdDisciplina(int idDisciplina) {
+        this.idDisciplina = idDisciplina;
+    }
+
+    public void setCodDisciplina(String codDisciplina) {
+        this.codDisciplina = codDisciplina;
+    }
+
+    public void setNomeDisciplina(String nomeDisciplina) {
+        this.nomeDisciplina = nomeDisciplina;
+    }
+
+    public void setSemestre(String semestre) {
+        this.semestre = semestre;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
+
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
     }
 
     public String getSemestre() {
@@ -43,13 +73,6 @@ public class Disciplina {
 
     public int getCreditos() {
         return creditos;
-    }
-
-    @Override
-    public String toString() {
-
-        return "";
-
     }
 
 }

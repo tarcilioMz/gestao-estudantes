@@ -6,7 +6,7 @@ package com.gestaoestudante.model.Entidades;
 
 import java.time.LocalDate;
 
-import com.gestaoestudante.model.Entidades.enums.Sexo;
+import com.gestaoestudante.model.Entidades.enums.SexoEnum;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Docente extends Pessoa {
     private String grau;
     private String areaEspecializacao;
 
-    Docente(int idPessoa, String codigo, String nome, Sexo sexo,
+    Docente(int idPessoa, String codigo, String nome, SexoEnum sexo,
             LocalDate dataNascimento, String email, String telefone, String grau, String areaEspecializacao) {
         super(idPessoa, codigo, nome, sexo, dataNascimento, email, telefone);
         this.grau = grau;
