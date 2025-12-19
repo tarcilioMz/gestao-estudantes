@@ -8,8 +8,8 @@ package com.gestaoestudante.exceptions;
  *
  * @author Muzime
  */
-public class ListaEstudantesVaziaException extends RuntimeException{
-    public ListaEstudantesVaziaException(String mensagem){
+public class ListaVaziaException extends RuntimeException{
+    public ListaVaziaException(String mensagem){
         super(mensagem);
     }
     

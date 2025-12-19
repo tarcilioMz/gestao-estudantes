@@ -8,8 +8,8 @@ package com.gestaoestudante.exceptions;
  *
  * @author Muzime
  */
-public class EstudanteNaoEncontradoException extends RuntimeException{
-    public EstudanteNaoEncontradoException(String mensagem){
+public class DocenteNaoEncontradoException extends RuntimeException{
+    public DocenteNaoEncontradoException(String mensagem){
         super(mensagem);
     }
     
