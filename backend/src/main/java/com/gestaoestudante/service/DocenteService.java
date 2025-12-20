@@ -114,6 +114,12 @@ public class DocenteService implements CodeGenerator {
         }
         return null;
     }
+    
+    public void validarCodigoDocente(String codigoDocente){
+        if(!docenteValidator.isCodigoDocenteValido(codigoDocente)){
+            throw new IllegalArgumentException("Codigo de docente invalido!");
+        }
+    }
 
     @Override
     public String gerarCodigoParticular() {

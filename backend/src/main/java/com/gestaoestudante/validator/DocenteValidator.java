@@ -24,6 +24,13 @@ public class DocenteValidator {
         return false;
     }
 
+    public boolean isCodigoDocenteValido(String codigoDocente) {
+        if ((codigoDocente.contains("DOC") || (codigoDocente.length() > 8))) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean isAreaEspecializacaoValida(String areaEspecializacao) {
         if (areaEspecializacao == null || areaEspecializacao.isBlank()) {
             return false;

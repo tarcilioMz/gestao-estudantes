@@ -4,34 +4,32 @@
  */
 package com.gestaoestudante.controller;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Scanner;
+
 import com.gestaoestudante.exceptions.EstudanteNaoEncontradoException;
 import com.gestaoestudante.model.Entidades.Estudante;
 import com.gestaoestudante.model.Entidades.enums.CursoEnum;
 import com.gestaoestudante.model.Entidades.enums.StatusEnum;
 import com.gestaoestudante.service.EstudanteService;
 import com.gestaoestudante.service.PessoaService;
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.util.Scanner;
-
-import com.gestaoestudante.validator.PessoaValidator;
-import java.util.Arrays;
 
 /**
  *
  * @author Muzime
  */
 public class EstudanteConsoleController extends PessoaConsoleController<Estudante> {
-    
+
     private final EstudanteService estudanteService;
     private final String UPDATE_SUCESSO = "atualizado com sucesso!";
-    
+
     public EstudanteConsoleController(PessoaService pessoaService, EstudanteService estudanteService, Scanner sc) {
         super(pessoaService, sc);
         this.estudanteService = estudanteService;
-        
+
     }
-    
+
     public void registarEstudante() {
         Estudante estudante = null;
         try {
@@ -45,15 +43,15 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
             String status = lerStatus();
             estudante = estudanteService.criarEstudante(nome, sexo, dataNascimento, email,
                     telefone, anoIngresso, curso, status);
-            
+
             System.out.println("Estudante registado com sucesso!");
             mostrarEstudante(estudante.getCodigo());
         } catch (Exception e) {
             System.out.println("Erro! " + e.getMessage());
         }
-        
+
     }
-    
+
     public void mostrarEstudante(String codEstudante) {
         try {
             Estudante estudante = estudanteService.buscarEstudante(codEstudante);
@@ -70,7 +68,7 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void removerEstudante(String codEstudante) {
         try {
             estudanteService.buscarEstudante(codEstudante);
@@ -80,7 +78,7 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
             System.out.println("Erro: " + e.getMessage());
         }
     }
-    
+
     public void actualizaNomeEstudante(String codEstudante) {
         try {
             String nome = lerNome();
@@ -90,9 +88,9 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
-    
+
     public void actualizaEmailEstudante(String codEstudante) {
         try {
             String email = lerEmail();
@@ -102,9 +100,9 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
-    
+
     public void actualizaTelefoneEstudante(String codEstudante) {
         try {
             String telefone = lerTelefone();
@@ -114,9 +112,9 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
-    
+
     public void actualizaStatusEstudante(String codEstudante) {
         try {
             String status = lerStatus();;
@@ -126,13 +124,13 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
-    
+
     public void menuAtualizacao(String codEstudante) {
         System.out.println("---Menu de actualizacao do estudante ---\n");
         System.out.println("----Dados actuais do estudante----");
-        
+
         int opc = 0;
         do {
             try {
@@ -145,7 +143,7 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
                            0. Sair
                            >""");
                 opc = Integer.parseInt(sc.nextLine());
-                
+
                 switch (opc) {
                     case 1 ->
                         actualizaNomeEstudante(codEstudante);
@@ -157,7 +155,7 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
                         actualizaStatusEstudante(codEstudante);
                     case 0 ->
                         System.out.println("Saindo ...");
-                    
+
                     default ->
                         System.out.println("Opcao invalida!");
                 }
@@ -167,7 +165,7 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
         } while (opc != 0);
         menuEstudante();
     }
-    
+
     public void menuEstudante() {
         int opc = 0;
         do {
@@ -184,7 +182,7 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
                 switch (opc) {
                     case 0 ->
                         System.out.println("Saindo...");
-                    
+
                     case 1 ->
                         registarEstudante();
                     case 2 ->
@@ -202,7 +200,7 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
             }
         } while (opc != 0);
     }
-    
+
     public String lerCodigoEstudante() {
         String codigoEstudante = null;
         while (true) {
@@ -217,7 +215,7 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
         }
         return codigoEstudante;
     }
-    
+
     public int lerAnoIngresso() {
         int anoIngresso = 0;
         while (true) {
@@ -229,11 +227,11 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
+
         }
         return anoIngresso;
     }
-    
+
     public String lerStatus() {
         String status = null;
         while (true) {
@@ -248,7 +246,7 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
         }
         return status;
     }
-    
+
     public CursoEnum lerCurso() {
         CursoEnum curso = null;
         while (true) {
@@ -266,7 +264,7 @@ public class EstudanteConsoleController extends PessoaConsoleController<Estudant
             }
         }
         return curso;
-        
+
     }
-    
+
 }
