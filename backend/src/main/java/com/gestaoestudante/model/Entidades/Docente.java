@@ -4,6 +4,7 @@
  */
 package com.gestaoestudante.model.Entidades;
 
+import com.gestaoestudante.model.Entidades.enums.GrauEnum;
 import java.time.LocalDate;
 
 import com.gestaoestudante.model.Entidades.enums.SexoEnum;
@@ -14,18 +15,19 @@ import com.gestaoestudante.model.Entidades.enums.SexoEnum;
  */
 public class Docente extends Pessoa {
 
-    private String grau;
+    private GrauEnum grau;
     private String areaEspecializacao;
 
-    Docente(int idPessoa, String codigo, String nome, SexoEnum sexo,
-            LocalDate dataNascimento, String email, String telefone, String grau, String areaEspecializacao) {
+    public Docente(long idPessoa, String codigo, String nome, SexoEnum sexo,
+            LocalDate dataNascimento, String email, String telefone, GrauEnum grau, 
+            String areaEspecializacao) {
         super(idPessoa, codigo, nome, sexo, dataNascimento, email, telefone);
         this.grau = grau;
         this.areaEspecializacao = areaEspecializacao;
 
     }
 
-    public String getGrau() {
+    public GrauEnum getGrau() {
         return grau;
     }
 
@@ -33,20 +35,12 @@ public class Docente extends Pessoa {
         return areaEspecializacao;
     }
 
-    public void setGrau(String grau) {
+    public void setGrau(GrauEnum grau) {
         this.grau = grau;
     }
 
     public void setAreaEspecializacao(String areaEspecializacao) {
         this.areaEspecializacao = areaEspecializacao;
     }
-
-    @Override
-    public void setDataNascimento(LocalDate dataNascimento) {
-        LocalDate limite = LocalDate.of(2007, 1, 1);
-        if(!dataNascimento.isAfter(limite)) throw new IllegalArgumentException("Data de Nascimento inválida");
-        this.dataNascimento=dataNascimento;
-        
-         }
 
 }
