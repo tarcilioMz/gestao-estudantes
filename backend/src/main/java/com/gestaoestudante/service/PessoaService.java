@@ -1,10 +1,11 @@
 package com.gestaoestudante.service;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+
+import com.gestaoestudante.model.Entidades.enums.SexoEnum;
 import com.gestaoestudante.util.IdGenerator;
 import com.gestaoestudante.validator.PessoaValidator;
-import java.time.DateTimeException;
-
-import java.time.LocalDate;
 
 public class PessoaService implements IdGenerator {
 
@@ -13,7 +14,7 @@ public class PessoaService implements IdGenerator {
 
     public PessoaService(PessoaValidator pessoaValidator) {
         this.pessoaValidator = pessoaValidator;
-
+        
     }
 
     public void validarNome(String nome) {
@@ -27,30 +28,42 @@ public class PessoaService implements IdGenerator {
             throw new IllegalArgumentException("Menor de idade!");
         }
     }
-    
-    public void validarEmail(String email){
-        if(!pessoaValidator.isEmailValido(email)){
+
+    public void validarEmail(String email) {
+        if (!pessoaValidator.isEmailValido(email)) {
             throw new IllegalArgumentException("Email invalido!");
         }
     }
-    
-    public void validarTelefone(String telefone){
-        if(!pessoaValidator.isTelefoneValido(telefone)){
+
+    public void validarTelefone(String telefone) {
+        if (!pessoaValidator.isTelefoneValido(telefone)) {
             throw new IllegalArgumentException("Telefone invalido");
         }
     }
-    public void validarSexo(String sexo){
-        if(!pessoaValidator.isSexoValido(sexo)){
+
+    public void validarSexo(String sexo) {
+        if (!pessoaValidator.isSexoValido(sexo)) {
             throw new IllegalArgumentException("Sexo invalido");
         }
     }
-    
+
     public LocalDate parseDataNascimento(String dataUser) {
         String[] partes = dataUser.split("-");
-               LocalDate dataNascimento = LocalDate.of(Integer.parseInt(partes[0]),
-                        Integer.parseInt(partes[1]), Integer.parseInt(partes[2]));
+        LocalDate dataNascimento = LocalDate.of(Integer.parseInt(partes[0]),
+                Integer.parseInt(partes[1]), Integer.parseInt(partes[2]));
         return dataNascimento;
-                
+    }
+
+    public SexoEnum parseSexo(String sexo) {
+        if (sexo == null || sexo.isBlank()) {
+            throw new IllegalArgumentException("Sexo não pode ser vazio.");
+        }
+        try {
+            return SexoEnum.valueOf(sexo.trim().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Sexo invalido!" + "valores validos: " + Arrays.toString(SexoEnum.values()));
+        }
+
     }
 
     @Override
