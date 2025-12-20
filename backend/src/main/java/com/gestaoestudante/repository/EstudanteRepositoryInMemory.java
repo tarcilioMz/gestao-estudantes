@@ -5,7 +5,7 @@
 package com.gestaoestudante.repository;
 
 import com.gestaoestudante.exceptions.EstudanteNaoEncontradoException;
-import com.gestaoestudante.exceptions.ListaEstudantesVaziaException;
+import com.gestaoestudante.exceptions.ListaVaziaException;
 import com.gestaoestudante.model.Entidades.Estudante;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +32,7 @@ public class EstudanteRepositoryInMemory implements EstudanteRepository{
 
     @Override
     public List<Estudante> buscarTodos() {
-        if(estudantes.isEmpty()) throw new ListaEstudantesVaziaException(
+        if(estudantes.isEmpty()) throw new ListaVaziaException(
                 "Nao existem estudantes registados!");
         List<Estudante> lista = new ArrayList<>(estudantes.values());
         return lista;
